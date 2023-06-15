@@ -9,14 +9,15 @@ import {
 } from "@ant-design/icons";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setAdmin } from "../../../redux/appSlice";
-import { ShowSuccess } from "../../Message";
-import { apiGetInfoDetailAdmin } from "../../../services/request/api";
+import { setAdmin } from "../../redux/appSlice";
+import { ShowSuccess } from "../Message";
+import { apiGetInfoDetailAdmin } from "../../services/request/api";
 import Cookie from "js-cookie";
-import Loading from "../../Loading";
+import Loading from "../Loading";
 import Info from "./Modal/Info";
+import { StyledContent } from "./styled";
 
-const { Header, Content, Sider } = Layout;
+const { Header, Sider } = Layout;
 
 const Admin = () => {
   const location = useLocation();
@@ -25,7 +26,7 @@ const Admin = () => {
   const [collapsed, setCollapsed] = useState(location.pathname);
   const [activeKey, setActiveKey] = useState(location.pathname);
   const admin = useSelector((state) => state.app.admin);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const infoRef = useRef();
 
   const handleLogOut = () => {
@@ -155,15 +156,9 @@ const Admin = () => {
               ]}
             />
           </Sider>
-          <Content
-            style={{
-              background: "#f9f9f9",
-              overflow: "hidden",
-              height: "calc(100vh - 64px)",
-            }}
-          >
+          <StyledContent>
             <Outlet />
-          </Content>
+          </StyledContent>
         </Layout>
       </Layout>
     </>

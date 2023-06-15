@@ -12,7 +12,6 @@ export const column = (onEdit, onDelete) => [
     key: "email",
     title: "Email",
     dataIndex: "email",
-    fixed: "left",
   },
   {
     key: "phone",

@@ -1,38 +1,25 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { Form, Input, Row, Col, Radio, Space, Button } from "antd";
-import { formValidate } from "../../../../services/helper";
-import { apiUpdateUsers } from "../../../../services/request/api";
-import { ShowSuccess, ShowError } from "../../../../components/Message";
 import { StyledModal } from "./styled";
+import { apiCreateUser } from "../../../services/request/api";
+import { ShowError, ShowSuccess } from "../../../components/Message";
+import { formValidate } from "../../../services/helper";
 
-const Edit = ({ getListUser }, ref) => {
+const Add = ({ getListUser }, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
-  const [item, setItem] = useState();
 
   useImperativeHandle(ref, () => ({
-    open: (item) => {
-      setItem(item);
+    open: () => {
       setIsModalOpen(true);
-      form.setFieldsValue({
-        ...item,
-        skill: item.skill ? item.skill[0] : null,
-        certification: item.certification ? item.certification[0] : null,
-      });
+      form.setFieldValue("gender", true);
     },
   }));
 
   const onFinish = async (values) => {
     try {
-      await apiUpdateUsers({
-        ...values,
-        id: item?.id,
-        role: item?.role,
-        birthday: item?.birthday,
-        skill: [values.skill],
-        certification: [values.certification],
-      });
-      ShowSuccess("Chỉnh sửa thông tin thành công");
+      await apiCreateUser({ ...values, role: "ADMIN" });
+      ShowSuccess("Thêm quản trị viên thành công");
       handleCancel();
       getListUser();
     } catch (error) {
@@ -50,32 +37,40 @@ const Edit = ({ getListUser }, ref) => {
       <StyledModal
         open={isModalOpen}
         onCancel={handleCancel}
-        width="40%"
+        width="50%"
         footer={null}
         destroyOnClose
-        title={<h3>Chỉnh sửa thông tin</h3>}
+        title={<h3>Thêm quản trị viên</h3>}
       >
         <Form layout="vertical" form={form} onFinish={onFinish}>
           <Row gutter={20}>
-            <Col span={24}>
-              <Form.Item
-                label="Email"
-                rules={[formValidate.required]}
-                name="email"
-              >
-                <Input placeholder="Nhập email" disabled />
-              </Form.Item>
-            </Col>
             <Col span={24}>
               <Form.Item
                 label="Tên"
                 rules={[formValidate.required]}
                 name="name"
               >
-                <Input placeholder="Nhập họ tên" />
+                <Input placeholder="Nhập tên" />
               </Form.Item>
             </Col>
-
+            <Col span={24}>
+              <Form.Item
+                label="Email"
+                rules={[formValidate.required, formValidate.email]}
+                name="email"
+              >
+                <Input placeholder="Nhập email" />
+              </Form.Item>
+            </Col>
+            <Col span={24}>
+              <Form.Item
+                label="Mật khẩu"
+                rules={[formValidate.required]}
+                name="password"
+              >
+                <Input.Password placeholder="Nhập mật khẩu" />
+              </Form.Item>
+            </Col>
             <Col span={12}>
               <Form.Item label="Số điện thoại" name="phone">
                 <Input placeholder="Nhập số điện thoại" />
@@ -88,29 +83,27 @@ const Edit = ({ getListUser }, ref) => {
                 rules={[formValidate.required]}
               >
                 <Radio.Group>
-                  <Radio value={true}>Male</Radio>
-                  <Radio value={false}>Female</Radio>
+                  <Radio value={true}>Nam</Radio>
+                  <Radio value={false}>Nữ</Radio>
                 </Radio.Group>
               </Form.Item>
             </Col>
-            <Col span={24}>
-              <Form.Item label="Kĩ năng" name="skill">
-                <Input.TextArea rows={4} />
-              </Form.Item>
-            </Col>
-            <Col span={24}>
-              <Form.Item label="Chứng nhận" name="certification">
-                <Input.TextArea rows={4} />
-              </Form.Item>
-            </Col>
 
-            <Col span={24} style={{ textAlign: "center" }}>
-              <Space>
-                <Button type="primary" htmlType="submit" style={{ width: 100 }}>
-                  Lưu
+            <Col span={24} style={{ textAlign: "center", marginTop: 10 }}>
+              <Space size={15}>
+                <Button
+                  type="primary"
+                  size="large"
+                  htmlType="submit"
+                  style={{ width: 100 }}
+                >
+                  Thêm
                 </Button>
-                <Button onClick={handleCancel} style={{ width: 100 }}>
-                  {" "}
+                <Button
+                  onClick={handleCancel}
+                  size="large"
+                  style={{ width: 100 }}
+                >
                   Đóng
                 </Button>
               </Space>
@@ -122,4 +115,4 @@ const Edit = ({ getListUser }, ref) => {
   );
 };
 
-export default forwardRef(Edit);
+export default forwardRef(Add);

@@ -1,27 +1,23 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { Form, Input, Row, Col, Space, Button } from "antd";
-import { formValidate } from "../../../../../services/helper";
-import { apiUpdateJobsType } from "../../../../../services/request/api";
 import { StyledModal } from "./styled";
-import { ShowSuccess, ShowError } from "../../../../../components/Message";
-
-const Edit = ({ getListJobType }, ref) => {
+import { apiCreateJobsType } from "../../../../services/request/api";
+import { ShowError, ShowSuccess } from "../../../../components/Message";
+import { formValidate } from "../../../../services/helper";
+const Add = ({ getListJobType }, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
-  const [item, setItem] = useState();
 
   useImperativeHandle(ref, () => ({
-    open: (item) => {
-      setItem(item);
+    open: () => {
       setIsModalOpen(true);
-      form.setFieldValue("tenLoaiCongViec", item.tenLoaiCongViec);
     },
   }));
 
   const onFinish = async (values) => {
     try {
-      await apiUpdateJobsType({ ...values, id: item.id });
-      ShowSuccess("Chỉnh sửa thông tin thành công");
+      await apiCreateJobsType(values);
+      ShowSuccess("Thêm loại công việc thành công");
       getListJobType();
       handleCancel();
     } catch (error) {
@@ -42,7 +38,7 @@ const Edit = ({ getListJobType }, ref) => {
         width="50%"
         footer={null}
         destroyOnClose
-        title={<h3>Chỉnh sửa thông tin</h3>}
+        title={<h3>Thêm loại công việc</h3>}
       >
         <Form layout="vertical" form={form} onFinish={onFinish}>
           <Row gutter={20}>
@@ -57,10 +53,19 @@ const Edit = ({ getListJobType }, ref) => {
             </Col>
             <Col span={24} style={{ textAlign: "center" }}>
               <Space>
-                <Button type="primary" htmlType="submit" style={{ width: 100 }}>
-                  Lưu
+                <Button
+                  type="primary"
+                  size="large"
+                  htmlType="submit"
+                  style={{ width: 100 }}
+                >
+                  Thêm
                 </Button>
-                <Button onClick={handleCancel} style={{ width: 100 }}>
+                <Button
+                  onClick={handleCancel}
+                  size="large"
+                  style={{ width: 100 }}
+                >
                   {" "}
                   Đóng
                 </Button>
@@ -73,4 +78,4 @@ const Edit = ({ getListJobType }, ref) => {
   );
 };
 
-export default forwardRef(Edit);
+export default forwardRef(Add);

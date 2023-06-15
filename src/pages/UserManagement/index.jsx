@@ -2,44 +2,51 @@ import React, { useEffect, useState, useRef } from "react";
 import { Card, Form, Input, Button, Table, Row, Col } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { column } from "./columns";
-import { apiGetJobsList } from "../../../services/request/api";
 import { useDebouncedCallback } from "use-debounce";
 import Swal from "sweetalert2";
-import { ShowSuccess, ShowError } from "../../../components/Message";
-import { apiDeleteJob } from "../../../services/request/api";
 import { Wrapper } from "./styled";
-import Add from "./Modal/Add";
+import AddAdmin from "./Modal/AddAdmin";
 import Edit from "./Modal/Edit";
+import {
+  apiDeleteUser,
+  apiGetUsersList,
+  apiSearchUser,
+} from "../../services/request/api";
+import { ShowError, ShowSuccess } from "../../components/Message";
+import useWindowDimensions from "../../services/hooks/useWindowDimensions";
 
-const WorkManagement = () => {
+const UserManagement = () => {
   const [data, setData] = useState([]);
   const [loading, isLoading] = useState(false);
-  const addRef = useRef();
+  const addAdminRef = useRef();
   const editRef = useRef();
+  const { height, width } = useWindowDimensions();
 
   const onEdit = (item) => editRef.current.open(item);
 
-  const getListWork = async (value) => {
-    isLoading(true);
-    const data = await apiGetJobsList(value);
-    setData(data?.content);
-    isLoading(false);
+  const getListUser = async (value) => {
+    if (!value) {
+      isLoading(true);
+      const data = await apiGetUsersList();
+      setData(data?.content);
+      isLoading(false);
+    }
+
+    if (value) {
+      isLoading(true);
+      const data = await apiSearchUser(value);
+      setData(data?.content);
+      isLoading(false);
+    }
   };
 
   const onSearch = async (value) => {
-    const newData = data.filter(
-      (job) => job.tenCongViec.toUpperCase().indexOf(value.toUpperCase()) !== -1
-    );
-    setData(newData);
+    getListUser(value);
   };
 
   const onChangeKeyWord = useDebouncedCallback((e) => {
     const value = e.target.value;
-    if (value) {
-      onSearch(value);
-    } else {
-      getListWork();
-    }
+    onSearch(value);
   }, 1000);
 
   const onDelete = (id) => {
@@ -53,8 +60,8 @@ const WorkManagement = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await apiDeleteJob(id);
-          getListWork();
+          await apiDeleteUser(id);
+          getListUser();
           ShowSuccess("Xoá thành công");
         } catch (error) {
           ShowError(error?.response?.data?.content);
@@ -64,15 +71,15 @@ const WorkManagement = () => {
   };
 
   useEffect(() => {
-    getListWork();
+    getListUser();
   }, []);
 
   return (
     <>
-      <Add ref={addRef} getListWork={getListWork} />
-      <Edit ref={editRef} getListWork={getListWork} />
+      <AddAdmin ref={addAdminRef} getListUser={getListUser} />
+      <Edit ref={editRef} getListUser={getListUser} />
       <Card bodyStyle={{ padding: "10px 25px" }}>
-        <h2>Quản lí công việc</h2>
+        <h2>Quản lí người dùng</h2>
       </Card>
       <div style={{ padding: 10 }}>
         <Card bodyStyle={{ padding: 15 }}>
@@ -83,7 +90,7 @@ const WorkManagement = () => {
                   <Col xs={24} md={16} lg={10} xxl={6}>
                     <Form.Item className="no-margin">
                       <Input
-                        placeholder="Nhập tên công việc để tìm kiếm"
+                        placeholder="Nhập tên người dùng để tìm kiếm"
                         suffix={<SearchOutlined />}
                         allowClear
                         onChange={onChangeKeyWord}
@@ -94,32 +101,33 @@ const WorkManagement = () => {
               </Form>
             </div>
             <div>
-              <Button type="primary" onClick={() => addRef.current.open()}>
+              <Button type="primary" onClick={() => addAdminRef.current.open()}>
                 Thêm quản trị viên
               </Button>
             </div>
           </Wrapper>
 
-          <div>
-            <Table
-              size="small"
-              columns={column(onEdit, onDelete)}
-              dataSource={data}
-              pagination={{
-                pageSize: 15,
-                position: ["bottomCenter"],
-              }}
-              loading={loading}
-              scroll={{
-                y: (1 - 320 / window.innerHeight) * window.innerHeight,
-                x: 1400,
-              }}
-            />
-          </div>
+          <Table
+            size="small"
+            columns={column(onEdit, onDelete)}
+            dataSource={data}
+            pagination={{
+              pageSize: 25,
+              position: ["bottomCenter"],
+            }}
+            loading={loading}
+            scroll={
+              width > 1600
+                ? { y: height - 320, x: 1280 }
+                : {
+                    x: 1400,
+                  }
+            }
+          />
         </Card>
       </div>
     </>
   );
 };
 
-export default WorkManagement;
+export default UserManagement;

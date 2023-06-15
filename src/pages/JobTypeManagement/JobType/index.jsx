@@ -2,22 +2,24 @@ import React, { useState, useEffect, useRef } from "react";
 import { Table, Form, Row, Col, Input, Button } from "antd";
 import { Wrapper } from "./styled";
 import { SearchOutlined } from "@ant-design/icons";
-import {
-  apiGetJobsTypeList,
-  apiDeleteJobsType,
-} from "../../../../services/request/api";
 import { column } from "./column";
 import Add from "./Modal/Add";
 import Edit from "./Modal/Edit";
 import Swal from "sweetalert2";
-import { ShowSuccess, ShowError } from "../../../../components/Message";
 import { useDebouncedCallback } from "use-debounce";
+import {
+  apiDeleteJobsType,
+  apiGetJobsTypeList,
+} from "../../../services/request/api";
+import { ShowError, ShowSuccess } from "../../../components/Message";
+import useWindowDimensions from "../../../services/hooks/useWindowDimensions";
 
 const JobType = () => {
   const [data, setData] = useState([]);
   const [loading, isLoading] = useState(false);
   const addRef = useRef();
   const editRef = useRef();
+  const { height, width } = useWindowDimensions();
 
   const onEdit = (item) => editRef.current.open(item);
 
@@ -105,13 +107,16 @@ const JobType = () => {
           dataSource={data}
           loading={loading}
           pagination={{
-            pageSize: 15,
+            pageSize: 25,
             position: ["bottomCenter"],
           }}
-          scroll={{
-            y: (1 - 360 / window.innerHeight) * window.innerHeight,
-            x: 1400,
-          }}
+          scroll={
+            width > 1600
+              ? { y: height - 360, x: 1280 }
+              : {
+                  x: 1400,
+                }
+          }
         />
       </div>
     </>

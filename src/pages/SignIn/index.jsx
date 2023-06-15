@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { Container } from "../../../components/styled";
 import { Card, Row, Col, Form, Input, Button } from "antd";
 import { Wrapper, ContentLeft, ContentRight, StyledForm } from "./styled";
-import { formValidate } from "../../../services/helper";
-import { apiSignIn } from "../../../services/request/api";
 import { useDispatch } from "react-redux";
-import { setAdmin } from "../../../redux/appSlice";
-import { ShowSuccess, ShowError } from "../../../components/Message";
 import { useNavigate } from "react-router-dom";
 import Cookie from "js-cookie";
+import { apiSignIn } from "../../services/request/api";
+import { setAdmin } from "../../redux/appSlice";
+import { ShowError, ShowSuccess } from "../../components/Message";
+import { formValidate } from "../../services/helper";
+import { Container } from "../../components/styled";
 
 const SignIn = () => {
   const navigation = useNavigate();

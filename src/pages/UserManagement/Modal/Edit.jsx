@@ -1,11 +1,11 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { Form, Input, Row, Col, Radio, Space, Button } from "antd";
-import { formValidate } from "../../../../services/helper";
-import { apiUpdateUsers } from "../../../../services/request/api";
-import { ShowSuccess, ShowError } from "../../../../components/Message";
 import { StyledModal } from "./styled";
+import { apiUpdateUser } from "../../../services/request/api";
+import { ShowError, ShowSuccess } from "../../../components/Message";
+import { formValidate } from "../../../services/helper";
 
-const Edit = ({ getListWork }, ref) => {
+const Edit = ({ getListUser }, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [form] = Form.useForm();
   const [item, setItem] = useState();
@@ -24,7 +24,7 @@ const Edit = ({ getListWork }, ref) => {
 
   const onFinish = async (values) => {
     try {
-      await apiUpdateUsers({
+      await apiUpdateUser({
         ...values,
         id: item?.id,
         role: item?.role,
@@ -34,7 +34,7 @@ const Edit = ({ getListWork }, ref) => {
       });
       ShowSuccess("Chỉnh sửa thông tin thành công");
       handleCancel();
-      getListWork();
+      getListUser();
     } catch (error) {
       ShowError(error?.response?.data?.content);
     }
@@ -63,7 +63,7 @@ const Edit = ({ getListWork }, ref) => {
                 rules={[formValidate.required]}
                 name="email"
               >
-                <Input placeholder="Nhập email" disabled />
+                <Input placeholder="Nhập email" />
               </Form.Item>
             </Col>
             <Col span={24}>
@@ -88,8 +88,8 @@ const Edit = ({ getListWork }, ref) => {
                 rules={[formValidate.required]}
               >
                 <Radio.Group>
-                  <Radio value={true}>Male</Radio>
-                  <Radio value={false}>Female</Radio>
+                  <Radio value={true}>Nam</Radio>
+                  <Radio value={false}>Nữ</Radio>
                 </Radio.Group>
               </Form.Item>
             </Col>
@@ -106,11 +106,19 @@ const Edit = ({ getListWork }, ref) => {
 
             <Col span={24} style={{ textAlign: "center" }}>
               <Space>
-                <Button type="primary" htmlType="submit" style={{ width: 100 }}>
+                <Button
+                  type="primary"
+                  size="large"
+                  htmlType="submit"
+                  style={{ width: 100 }}
+                >
                   Lưu
                 </Button>
-                <Button onClick={handleCancel} style={{ width: 100 }}>
-                  {" "}
+                <Button
+                  onClick={handleCancel}
+                  size="large"
+                  style={{ width: 100 }}
+                >
                   Đóng
                 </Button>
               </Space>

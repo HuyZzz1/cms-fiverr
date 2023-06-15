@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SignIn from "./pages/Admin/SignIn";
-import LayoutAdmin from "./components/Layout/Admin";
-import UserManagement from "./pages/Admin/UserManagement";
-import WorkManagement from "./pages/Admin/WorkManagement";
-import JobTypeManagement from "./pages/Admin/JobTypeManagement";
+import SignIn from "./pages/SignIn";
+import LayoutAdmin from "./components/Layout";
+import UserManagement from "./pages/UserManagement";
+import WorkManagement from "./pages/WorkManagement";
+import JobTypeManagement from "./pages/JobTypeManagement";
+import BookingJob from "./pages/BookingJob";
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
             path="/admin/job-type-management"
             element={<JobTypeManagement />}
           />
-          <Route path="/admin/service-management" />
+          <Route path="/admin/service-management" element={<BookingJob />} />
         </Route>
       </Routes>
     </Router>

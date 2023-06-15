@@ -1,4 +1,3 @@
-import httpFormData from "../httpFormData";
 import httpAdmin from "../httpAdmin";
 
 export const apiSignIn = async (params) => {
@@ -21,25 +20,24 @@ export const apiGetUsersList = async () => {
   return data;
 };
 
-export const apiCreateUsers = async (params) => {
+export const apiCreateUser = async (params) => {
   const { data } = await httpAdmin.post("/users", params);
 
   return data;
 };
 
-export const apiUpdateUsers = async (params) => {
+export const apiUpdateUser = async (params) => {
   const { data } = await await httpAdmin.put(`/users/${params.id}`, params);
 
   return data;
 };
 
-export const apiDeleteUsers = async (params) => {
+export const apiDeleteUser = async (params) => {
   const { data } = await httpAdmin.delete("/users", {
     params: {
       id: params,
     },
   });
-
   return data;
 };
 
@@ -67,7 +65,7 @@ export const apiDeleteJob = async (params) => {
   return data;
 };
 
-//jobType
+//job Type
 
 export const apiGetJobsTypeList = async () => {
   const { data } = await httpAdmin.get("/loai-cong-viec");
@@ -89,6 +87,23 @@ export const apiUpdateJobsType = async (params) => {
 
 export const apiDeleteJobsType = async (params) => {
   const { data } = await httpAdmin.delete(`/loai-cong-viec/${params}`, {
+    params: {
+      id: params,
+    },
+  });
+
+  return data;
+};
+
+//booking job
+export const apiGetBookingJobsList = async () => {
+  const { data } = await httpAdmin.get("/thue-cong-viec");
+
+  return data;
+};
+
+export const apiDeleteBookingJob = async (params) => {
+  const { data } = await httpAdmin.delete(`/thue-cong-viec/${params}`, {
     params: {
       id: params,
     },

@@ -1,11 +1,11 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { Form, Row, Col, Input, Space, Button } from "antd";
-import { apiUpdateUsers } from "../../../../services/request/api";
-import { ShowSuccess, ShowError } from "../../../Message";
 import { useDispatch } from "react-redux";
-import { setAdmin } from "../../../../redux/appSlice";
 import { useSelector } from "react-redux";
 import { StyledModal } from "./styled";
+import { apiUpdateUser } from "../../../services/request/api";
+import { setAdmin } from "../../../redux/appSlice";
+import { ShowError, ShowSuccess } from "../../Message";
 
 const Info = (_, ref) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -22,7 +22,7 @@ const Info = (_, ref) => {
 
   const onFinish = async (values) => {
     try {
-      const data = await apiUpdateUsers({
+      const data = await apiUpdateUser({
         ...values,
         role: "ADMIN",
         id: admin?.id,
@@ -75,7 +75,7 @@ const Info = (_, ref) => {
           <Col sm={24} lg={24}>
             <Form.Item
               label={
-                <p style={{ fontWeight: 500, fontSize: 15 }}>Số điên thoại</p>
+                <p style={{ fontWeight: 500, fontSize: 15 }}>Số điện thoại</p>
               }
               name="phone"
             >
