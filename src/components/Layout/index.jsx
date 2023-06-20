@@ -34,7 +34,7 @@ const Admin = () => {
     Cookie.remove("ACCESS_TOKEN_ADMIN");
     Cookie.remove("ID_ADMIN");
     dispatch(setAdmin({}));
-    ShowSuccess("Đăng xuất thành công");
+    ShowSuccess("Logout successful");
   };
 
   const getUser = async () => {
