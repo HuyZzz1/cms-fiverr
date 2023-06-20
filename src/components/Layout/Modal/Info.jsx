@@ -28,7 +28,7 @@ const Info = (_, ref) => {
         id: admin?.id,
       });
       dispatch(setAdmin(data?.content));
-      ShowSuccess("Chỉnh sửa thông tin thành công");
+      ShowSuccess("Successfully edited");
       handleCancel();
     } catch (error) {
       ShowError(error?.response?.data?.content);
@@ -47,7 +47,7 @@ const Info = (_, ref) => {
       width="50%"
       footer={null}
       destroyOnClose
-      title={<h3>Thông tin tài khoản</h3>}
+      title={<h3>Account Information</h3>}
     >
       <Form
         layout="vertical"
@@ -58,10 +58,10 @@ const Info = (_, ref) => {
         <Row gutter={[12, 12]} style={{ width: "100%" }}>
           <Col sm={24} lg={24}>
             <Form.Item
-              label={<p style={{ fontWeight: 500, fontSize: 15 }}>Họ tên</p>}
+              label={<p style={{ fontWeight: 500, fontSize: 15 }}>Full Name</p>}
               name="name"
             >
-              <Input placeholder="Họ tên" />
+              <Input placeholder="Full Name" />
             </Form.Item>
           </Col>
           <Col sm={24} lg={24}>
@@ -74,12 +74,10 @@ const Info = (_, ref) => {
           </Col>
           <Col sm={24} lg={24}>
             <Form.Item
-              label={
-                <p style={{ fontWeight: 500, fontSize: 15 }}>Số điện thoại</p>
-              }
+              label={<p style={{ fontWeight: 500, fontSize: 15 }}>Phone</p>}
               name="phone"
             >
-              <Input placeholder="Số điện thoại" />
+              <Input placeholder="Phone" />
             </Form.Item>
           </Col>
           <Col span={24}>
@@ -90,7 +88,7 @@ const Info = (_, ref) => {
                 type="primary"
                 style={{ width: "100px" }}
               >
-                Lưu
+                Save
               </Button>
               <Button
                 size="large"
@@ -98,7 +96,7 @@ const Info = (_, ref) => {
                 style={{ width: "100px" }}
                 onClick={handleCancel}
               >
-                Đóng
+                Close
               </Button>
             </Space>
           </Col>

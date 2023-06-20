@@ -21,7 +21,7 @@ const Edit = ({ getListJobType }, ref) => {
   const onFinish = async (values) => {
     try {
       await apiUpdateJobsType({ ...values, id: item.id });
-      ShowSuccess("Chỉnh sửa thông tin thành công");
+      ShowSuccess("Successfully edited");
       getListJobType();
       handleCancel();
     } catch (error) {
@@ -42,17 +42,17 @@ const Edit = ({ getListJobType }, ref) => {
         width="50%"
         footer={null}
         destroyOnClose
-        title={<h3>Chỉnh sửa thông tin</h3>}
+        title={<h3>Edit job type</h3>}
       >
         <Form layout="vertical" form={form} onFinish={onFinish}>
           <Row gutter={20}>
             <Col span={24}>
               <Form.Item
-                label="Loại công việc"
+                label="Job Type"
                 name="tenLoaiCongViec"
                 rules={[formValidate.required]}
               >
-                <Input placeholder="Nhập loại công việc" />
+                <Input placeholder="Job Type" />
               </Form.Item>
             </Col>
             <Col span={24} style={{ textAlign: "center" }}>
@@ -63,14 +63,14 @@ const Edit = ({ getListJobType }, ref) => {
                   htmlType="submit"
                   style={{ width: 100 }}
                 >
-                  Lưu
+                  Save
                 </Button>
                 <Button
                   onClick={handleCancel}
                   size="large"
                   style={{ width: 100 }}
                 >
-                  Đóng
+                  Close
                 </Button>
               </Space>
             </Col>

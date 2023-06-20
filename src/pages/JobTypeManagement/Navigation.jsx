@@ -21,7 +21,7 @@ const Navigation = ({ tab, setTab }) => {
               }}
             >
               <BookOutlined style={{ fontSize: 17 }} />
-              Loại công việc
+              Job Type
             </div>
           ),
         },
@@ -35,7 +35,7 @@ const Navigation = ({ tab, setTab }) => {
               }}
             >
               <FileSearchOutlined style={{ fontSize: 17 }} />
-              Chi tiết loại công việc
+              Details Job Type
             </div>
           ),
         },

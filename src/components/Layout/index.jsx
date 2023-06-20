@@ -87,7 +87,7 @@ const Admin = () => {
                   key: 1,
                   label: (
                     <p onClick={() => infoRef.current.open()}>
-                      Thông tin tài khoản
+                      Account Information
                     </p>
                   ),
                 },
@@ -95,7 +95,7 @@ const Admin = () => {
                   key: 2,
                   label: (
                     <p style={{ color: "red" }} onClick={handleLogOut}>
-                      Đăng xuất
+                      Log Out
                     </p>
                   ),
                 },
@@ -136,22 +136,22 @@ const Admin = () => {
                 {
                   key: "/",
                   icon: <UserAddOutlined style={{ fontSize: 20 }} />,
-                  label: "Quản lí người dùng",
+                  label: "User Management",
                 },
                 {
-                  key: "/admin/work-management",
+                  key: "/admin/job-management",
                   icon: <FileSyncOutlined style={{ fontSize: 20 }} />,
-                  label: "Quản lí công việc",
+                  label: "Job Management",
                 },
                 {
                   key: "/admin/job-type-management",
                   icon: <DeploymentUnitOutlined style={{ fontSize: 20 }} />,
-                  label: "Quản lí loại công việc",
+                  label: "Job Type Management",
                 },
                 {
                   key: "/admin/service-management",
                   icon: <SnippetsOutlined style={{ fontSize: 20 }} />,
-                  label: "Quản lí thuê công việc",
+                  label: "Service Management",
                 },
               ]}
             />

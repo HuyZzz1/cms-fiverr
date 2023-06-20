@@ -9,7 +9,7 @@ import { apiDeleteJob, apiGetJobsList } from "../../services/request/api";
 import { ShowError, ShowSuccess } from "../../components/Message";
 import useWindowDimensions from "../../services/hooks/useWindowDimensions";
 
-const WorkManagement = () => {
+const JobManagement = () => {
   const { height, width } = useWindowDimensions();
   const [data, setData] = useState([]);
   const [loading, isLoading] = useState(false);
@@ -40,9 +40,9 @@ const WorkManagement = () => {
   const onDelete = (id) => {
     Swal.fire({
       icon: "warning",
-      text: "Bạn muốn xoá dữ liệu này chứ?",
-      confirmButtonText: "Đồng ý",
-      cancelButtonText: "Không",
+      text: "Do you want to delete this data?",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
       showCancelButton: true,
       confirmButtonColor: "#1677ff",
     }).then(async (result) => {
@@ -50,7 +50,7 @@ const WorkManagement = () => {
         try {
           await apiDeleteJob(id);
           getListWork();
-          ShowSuccess("Xoá thành công");
+          ShowSuccess("Delete successfully");
         } catch (error) {
           ShowError(error?.response?.data?.content);
         }
@@ -65,7 +65,7 @@ const WorkManagement = () => {
   return (
     <>
       <Card bodyStyle={{ padding: "10px 25px" }}>
-        <h2>Quản lí công việc</h2>
+        <h2>Job Management</h2>
       </Card>
       <div style={{ padding: 10 }}>
         <Card bodyStyle={{ padding: 15 }}>
@@ -76,7 +76,7 @@ const WorkManagement = () => {
                   <Col xs={24} md={16} lg={10} xxl={6}>
                     <Form.Item className="no-margin">
                       <Input
-                        placeholder="Nhập tên công việc để tìm kiếm"
+                        placeholder="Enter job name to search"
                         suffix={<SearchOutlined />}
                         allowClear
                         onChange={onChangeKeyWord}
@@ -113,4 +113,4 @@ const WorkManagement = () => {
   );
 };
 
-export default WorkManagement;
+export default JobManagement;

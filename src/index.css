@@ -80,3 +80,7 @@ li {
   margin: 0 !important;
   margin-top: 15px !important;
 }
+
+.styled-tooltip .ant-tooltip-content {
+  width: 31.25rem;
+}

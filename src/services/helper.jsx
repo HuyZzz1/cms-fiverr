@@ -1,11 +1,11 @@
 export const formValidate = {
   required: {
     required: true,
-    message: "Không được để trống",
+    message: "This field cannot be blank",
   },
 
   email: {
     type: "email",
-    message: "Email không hợp lệ",
+    message: "Invalid email",
   },
 };

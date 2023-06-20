@@ -4,7 +4,7 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 export const column = (onEdit, onDelete) => [
   {
     key: "name",
-    title: "Tên",
+    title: "Name",
     dataIndex: "name",
     fixed: "left",
   },
@@ -15,12 +15,12 @@ export const column = (onEdit, onDelete) => [
   },
   {
     key: "phone",
-    title: "Số điện thoại",
+    title: "Phone",
     dataIndex: "phone",
   },
   {
     key: "gender",
-    title: "Giới tính",
+    title: "Gender",
     dataIndex: "gender",
     align: "center",
     width: 100,
@@ -29,17 +29,17 @@ export const column = (onEdit, onDelete) => [
   },
   {
     key: "certification",
-    title: "Chứng nhận",
+    title: "Certification",
     dataIndex: "certification",
   },
   {
     key: "skill",
-    title: "Kĩ năng",
+    title: "Skill",
     dataIndex: "skill",
   },
   {
     key: "role",
-    title: "Loại người dùng",
+    title: "Role",
     dataIndex: "role",
     align: "center",
     render: (value) => {
@@ -57,7 +57,7 @@ export const column = (onEdit, onDelete) => [
     render: (item) => {
       return (
         <Space>
-          <Tooltip title="Chỉnh sửa">
+          <Tooltip title="Edit">
             <Button
               size="small"
               type="primary"

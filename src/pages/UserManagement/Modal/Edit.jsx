@@ -32,7 +32,7 @@ const Edit = ({ getListUser }, ref) => {
         skill: [values.skill],
         certification: [values.certification],
       });
-      ShowSuccess("Chỉnh sửa thông tin thành công");
+      ShowSuccess("Successfully edited information");
       handleCancel();
       getListUser();
     } catch (error) {
@@ -53,53 +53,53 @@ const Edit = ({ getListUser }, ref) => {
         width="40%"
         footer={null}
         destroyOnClose
-        title={<h3>Chỉnh sửa thông tin</h3>}
+        title={<h3>Edit information</h3>}
       >
         <Form layout="vertical" form={form} onFinish={onFinish}>
           <Row gutter={20}>
             <Col span={24}>
               <Form.Item
                 label="Email"
-                rules={[formValidate.required]}
+                rules={[formValidate.required, formValidate.email]}
                 name="email"
               >
-                <Input placeholder="Nhập email" />
+                <Input placeholder="Email" />
               </Form.Item>
             </Col>
             <Col span={24}>
               <Form.Item
-                label="Tên"
+                label="Name"
                 rules={[formValidate.required]}
                 name="name"
               >
-                <Input placeholder="Nhập họ tên" />
+                <Input placeholder="Name" />
               </Form.Item>
             </Col>
 
             <Col span={12}>
-              <Form.Item label="Số điện thoại" name="phone">
-                <Input placeholder="Nhập số điện thoại" />
+              <Form.Item label="Phone" name="phone">
+                <Input placeholder="Phone" />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                label="Giới tính"
+                label="Gender"
                 name="gender"
                 rules={[formValidate.required]}
               >
                 <Radio.Group>
-                  <Radio value={true}>Nam</Radio>
-                  <Radio value={false}>Nữ</Radio>
+                  <Radio value={true}>Male</Radio>
+                  <Radio value={false}>Female</Radio>
                 </Radio.Group>
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item label="Kĩ năng" name="skill">
+              <Form.Item label="Skill" name="skill">
                 <Input.TextArea rows={4} />
               </Form.Item>
             </Col>
             <Col span={24}>
-              <Form.Item label="Chứng nhận" name="certification">
+              <Form.Item label="Certification" name="certification">
                 <Input.TextArea rows={4} />
               </Form.Item>
             </Col>
@@ -112,14 +112,14 @@ const Edit = ({ getListUser }, ref) => {
                   htmlType="submit"
                   style={{ width: 100 }}
                 >
-                  Lưu
+                  Save
                 </Button>
                 <Button
                   onClick={handleCancel}
                   size="large"
                   style={{ width: 100 }}
                 >
-                  Đóng
+                  Close
                 </Button>
               </Space>
             </Col>

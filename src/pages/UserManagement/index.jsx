@@ -79,7 +79,7 @@ const UserManagement = () => {
       <AddAdmin ref={addAdminRef} getListUser={getListUser} />
       <Edit ref={editRef} getListUser={getListUser} />
       <Card bodyStyle={{ padding: "10px 25px" }}>
-        <h2>Quản lí người dùng</h2>
+        <h2>User Management</h2>
       </Card>
       <div style={{ padding: 10 }}>
         <Card bodyStyle={{ padding: 15 }}>
@@ -90,7 +90,7 @@ const UserManagement = () => {
                   <Col xs={24} md={16} lg={10} xxl={6}>
                     <Form.Item className="no-margin">
                       <Input
-                        placeholder="Nhập tên người dùng để tìm kiếm"
+                        placeholder="Enter username to search"
                         suffix={<SearchOutlined />}
                         allowClear
                         onChange={onChangeKeyWord}
@@ -102,7 +102,7 @@ const UserManagement = () => {
             </div>
             <div>
               <Button type="primary" onClick={() => addAdminRef.current.open()}>
-                Thêm quản trị viên
+                Add administrators
               </Button>
             </div>
           </Wrapper>

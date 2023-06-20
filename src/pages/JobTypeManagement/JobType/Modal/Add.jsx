@@ -17,7 +17,7 @@ const Add = ({ getListJobType }, ref) => {
   const onFinish = async (values) => {
     try {
       await apiCreateJobsType(values);
-      ShowSuccess("Thêm loại công việc thành công");
+      ShowSuccess("Job type successfully");
       getListJobType();
       handleCancel();
     } catch (error) {
@@ -38,17 +38,17 @@ const Add = ({ getListJobType }, ref) => {
         width="50%"
         footer={null}
         destroyOnClose
-        title={<h3>Thêm loại công việc</h3>}
+        title={<h3>Add job type</h3>}
       >
         <Form layout="vertical" form={form} onFinish={onFinish}>
           <Row gutter={20}>
             <Col span={24}>
               <Form.Item
-                label="Loại công việc"
+                label="Job Type"
                 name="tenLoaiCongViec"
                 rules={[formValidate.required]}
               >
-                <Input placeholder="Nhập loại công việc" />
+                <Input placeholder="Job Type" />
               </Form.Item>
             </Col>
             <Col span={24} style={{ textAlign: "center" }}>
@@ -59,7 +59,7 @@ const Add = ({ getListJobType }, ref) => {
                   htmlType="submit"
                   style={{ width: 100 }}
                 >
-                  Thêm
+                  Add
                 </Button>
                 <Button
                   onClick={handleCancel}
@@ -67,7 +67,7 @@ const Add = ({ getListJobType }, ref) => {
                   style={{ width: 100 }}
                 >
                   {" "}
-                  Đóng
+                  Close
                 </Button>
               </Space>
             </Col>

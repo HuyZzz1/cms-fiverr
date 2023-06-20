@@ -50,9 +50,9 @@ const JobType = () => {
   const onDelete = (id) => {
     Swal.fire({
       icon: "warning",
-      text: "Bạn muốn xoá dữ liệu này chứ?",
-      confirmButtonText: "Đồng ý",
-      cancelButtonText: "Không",
+      text: "Do you want to delete this data?",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
       showCancelButton: true,
       confirmButtonColor: "#1677ff",
     }).then(async (result) => {
@@ -60,7 +60,7 @@ const JobType = () => {
         try {
           await apiDeleteJobsType(id);
           getListJobType();
-          ShowSuccess("Xoá thành công");
+          ShowSuccess("Delete successfully");
         } catch (error) {
           ShowError(error?.response?.data?.content);
         }
@@ -83,7 +83,7 @@ const JobType = () => {
               <Col xs={24} md={16} lg={10} xxl={6}>
                 <Form.Item className="no-margin">
                   <Input
-                    placeholder="Nhập tên loại công việc để tìm kiếm"
+                    placeholder="Enter job type name to search"
                     suffix={<SearchOutlined />}
                     allowClear
                     onChange={onChangeKeyWord}
@@ -95,7 +95,7 @@ const JobType = () => {
         </div>
         <div>
           <Button type="primary" onClick={() => addRef.current.open()}>
-            Thêm loại công việc
+            Add job type
           </Button>
         </div>
       </Wrapper>

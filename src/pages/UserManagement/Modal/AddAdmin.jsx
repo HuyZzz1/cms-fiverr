@@ -19,7 +19,7 @@ const Add = ({ getListUser }, ref) => {
   const onFinish = async (values) => {
     try {
       await apiCreateUser({ ...values, role: "ADMIN" });
-      ShowSuccess("Thêm quản trị viên thành công");
+      ShowSuccess("Add administrators successfully");
       handleCancel();
       getListUser();
     } catch (error) {
@@ -40,17 +40,17 @@ const Add = ({ getListUser }, ref) => {
         width="50%"
         footer={null}
         destroyOnClose
-        title={<h3>Thêm quản trị viên</h3>}
+        title={<h3>Add administrators</h3>}
       >
         <Form layout="vertical" form={form} onFinish={onFinish}>
           <Row gutter={20}>
             <Col span={24}>
               <Form.Item
-                label="Tên"
+                label="Name"
                 rules={[formValidate.required]}
                 name="name"
               >
-                <Input placeholder="Nhập tên" />
+                <Input placeholder="Name" />
               </Form.Item>
             </Col>
             <Col span={24}>
@@ -59,32 +59,32 @@ const Add = ({ getListUser }, ref) => {
                 rules={[formValidate.required, formValidate.email]}
                 name="email"
               >
-                <Input placeholder="Nhập email" />
+                <Input placeholder="Email" />
               </Form.Item>
             </Col>
             <Col span={24}>
               <Form.Item
-                label="Mật khẩu"
+                label="Password"
                 rules={[formValidate.required]}
                 name="password"
               >
-                <Input.Password placeholder="Nhập mật khẩu" />
+                <Input.Password placeholder="Password" />
               </Form.Item>
             </Col>
             <Col span={12}>
-              <Form.Item label="Số điện thoại" name="phone">
-                <Input placeholder="Nhập số điện thoại" />
+              <Form.Item label="Phone" name="phone">
+                <Input placeholder="Phone" />
               </Form.Item>
             </Col>
             <Col span={12}>
               <Form.Item
-                label="Giới tính"
+                label="Gender"
                 name="gender"
                 rules={[formValidate.required]}
               >
                 <Radio.Group>
-                  <Radio value={true}>Nam</Radio>
-                  <Radio value={false}>Nữ</Radio>
+                  <Radio value={true}>Male</Radio>
+                  <Radio value={false}>Female</Radio>
                 </Radio.Group>
               </Form.Item>
             </Col>
@@ -97,14 +97,14 @@ const Add = ({ getListUser }, ref) => {
                   htmlType="submit"
                   style={{ width: 100 }}
                 >
-                  Thêm
+                  Add
                 </Button>
                 <Button
                   onClick={handleCancel}
                   size="large"
                   style={{ width: 100 }}
                 >
-                  Đóng
+                  Close
                 </Button>
               </Space>
             </Col>

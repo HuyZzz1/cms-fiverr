@@ -29,12 +29,12 @@ const SignIn = () => {
         Cookie.set("ID_ADMIN", data?.content?.user?.id);
         dispatch(setAdmin(data?.content));
         navigation("/");
-        ShowSuccess("Đăng nhập thành công");
+        ShowSuccess("Logged in successfully");
         setIsLoading(false);
         form.resetFields();
       } else {
         setIsLoading(false);
-        ShowError("Tài khoản không có quyền truy cập");
+        ShowError("Account does not have access");
       }
     } catch (error) {
       setIsLoading(false);
@@ -47,7 +47,7 @@ const SignIn = () => {
       <Container>
         <Card bodyStyle={{ padding: 0 }}>
           <Row>
-            <Col lg={14} md={0}>
+            <Col lg={14} xs={0}>
               <ContentLeft>
                 <div
                   style={{
@@ -81,7 +81,15 @@ const SignIn = () => {
                       marginBottom: "16px",
                     }}
                   >
-                    <h1 style={{ fontSize: 30 }}>Đăng nhập</h1>
+                    <h1
+                      style={{
+                        fontSize: 30,
+                        textTransform: "uppercase",
+                        letterSpacing: 5,
+                      }}
+                    >
+                      Login
+                    </h1>
                   </div>
                   <Form.Item
                     name="email"
@@ -92,10 +100,10 @@ const SignIn = () => {
                   </Form.Item>
                   <Form.Item
                     name="password"
-                    label="Mật khẩu"
+                    label="Password"
                     rules={[formValidate.required]}
                   >
-                    <Input.Password placeholder="Mật khẩu" />
+                    <Input.Password placeholder="Password" />
                   </Form.Item>
                   <Form.Item style={{ textAlign: "center", marginTop: 30 }}>
                     <Button
@@ -105,7 +113,7 @@ const SignIn = () => {
                       style={{ width: "100%" }}
                       disabled={isLoading}
                     >
-                      <p>Đăng nhập</p>
+                      <p>Login</p>
                     </Button>
                   </Form.Item>
                 </StyledForm>

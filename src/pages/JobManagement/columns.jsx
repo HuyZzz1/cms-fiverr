@@ -4,7 +4,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 export const column = (onDelete) => [
   {
     key: "image",
-    title: "Hình ảnh",
+    title: "Image",
     dataIndex: "hinhAnh",
     render: (imageUrl) => <Image width={80} height={45} src={imageUrl} />,
     width: 150,
@@ -12,7 +12,7 @@ export const column = (onDelete) => [
   },
   {
     key: "name",
-    title: "Tên",
+    title: "Name",
     dataIndex: "tenCongViec",
     render: (value) => (
       <Typography.Paragraph
@@ -30,7 +30,7 @@ export const column = (onDelete) => [
   },
   {
     key: "price",
-    title: "Giá tiền",
+    title: "Price",
     dataIndex: "giaTien",
     align: "center",
     width: 120,
@@ -38,13 +38,14 @@ export const column = (onDelete) => [
   },
   {
     key: "description",
-    title: "Mô tả",
+    title: "Description",
     dataIndex: "moTa",
     render: (value) => (
       <Typography.Paragraph
         ellipsis={{
           tooltip: {
             overlayInnerStyle: { whiteSpace: "pre-line" },
+            overlayClassName: "styled-tooltip",
           },
           rows: 2,
         }}
@@ -56,15 +57,16 @@ export const column = (onDelete) => [
   },
   {
     key: "shortDescription",
-    title: "Mô tả ngắn",
+    title: "Short description",
     dataIndex: "moTaNgan",
     render: (value) => (
       <Typography.Paragraph
         ellipsis={{
           tooltip: {
             overlayInnerStyle: { whiteSpace: "pre-line" },
+            overlayClassName: "styled-tooltip",
           },
-          rows: 3,
+          rows: 2,
         }}
         style={{ margin: 0 }}
       >
@@ -74,7 +76,7 @@ export const column = (onDelete) => [
   },
   {
     key: "evaluate",
-    title: "Đánh giá",
+    title: "Evaluate",
     dataIndex: "danhGia",
     align: "center",
     width: 80,
@@ -85,7 +87,7 @@ export const column = (onDelete) => [
     align: "center",
     render: (item) => {
       return (
-        <Tooltip title="Xoá">
+        <Tooltip title="Delete">
           <Button
             size="small"
             style={{

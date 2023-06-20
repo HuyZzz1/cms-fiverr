@@ -24,7 +24,7 @@ const View = () => {
             gap: "10px",
           }}
         >
-          <h2>Quản lí loại công việc</h2>
+          <h2>Job Type Management</h2>
           <Navigation tab={tab} setTab={setTab} />
         </div>
       </Card>

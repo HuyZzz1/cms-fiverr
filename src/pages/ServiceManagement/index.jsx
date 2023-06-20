@@ -11,7 +11,7 @@ import {
 } from "../../services/request/api";
 import useWindowDimensions from "../../services/hooks/useWindowDimensions";
 
-const BookingJob = () => {
+const ServiceManagement = () => {
   const [data, setData] = useState([]);
   const [loading, isLoading] = useState(false);
   const [user, setUser] = useState([]);
@@ -38,9 +38,9 @@ const BookingJob = () => {
   const onDelete = (id) => {
     Swal.fire({
       icon: "warning",
-      text: "Bạn muốn xoá dữ liệu này chứ?",
-      confirmButtonText: "Đồng ý",
-      cancelButtonText: "Không",
+      text: "Do you want to delete this data?",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
       showCancelButton: true,
       confirmButtonColor: "#1677ff",
     }).then(async (result) => {
@@ -48,7 +48,7 @@ const BookingJob = () => {
         try {
           await apiDeleteBookingJob(id);
           getListBookingJob();
-          ShowSuccess("Xoá thành công");
+          ShowSuccess("Delete successfully");
         } catch (error) {
           ShowError(error?.response?.data?.content);
         }
@@ -68,7 +68,7 @@ const BookingJob = () => {
   return (
     <>
       <Card bodyStyle={{ padding: "10px 25px" }}>
-        <h2>Quản lí thuê công việc</h2>
+        <h2>Service Management</h2>
       </Card>
       <div style={{ padding: 10 }}>
         <Card bodyStyle={{ padding: 15 }}>
@@ -95,4 +95,4 @@ const BookingJob = () => {
   );
 };
 
-export default BookingJob;
+export default ServiceManagement;

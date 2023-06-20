@@ -3,15 +3,8 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 export const column = (onEdit, onDelete) => [
   {
-    key: "id",
-    title: "ID",
-    dataIndex: "id",
-    width: 100,
-    align: "center",
-  },
-  {
     key: "jobType",
-    title: "Tên loại công việc",
+    title: "Name",
     dataIndex: "tenLoaiCongViec",
   },
   {
@@ -21,7 +14,7 @@ export const column = (onEdit, onDelete) => [
     render: (item) => {
       return (
         <Space>
-          <Tooltip title="Chỉnh sửa">
+          <Tooltip title="Edit">
             <Button
               size="small"
               type="primary"
@@ -35,7 +28,7 @@ export const column = (onEdit, onDelete) => [
               <EditOutlined style={{ fontSize: "14px" }} />
             </Button>
           </Tooltip>
-          <Tooltip title="Xoá">
+          <Tooltip title="Delete">
             <Button
               size="small"
               style={{

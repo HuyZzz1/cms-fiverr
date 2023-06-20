@@ -1,11 +1,10 @@
 import { Typography, Tooltip, Button } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import dayjs from "dayjs";
 
 export const column = (user, work, onDelete) => [
   {
     key: "name",
-    title: "Tên người thuê",
+    title: "Tenant's name",
     dataIndex: "maNguoiThue",
     render: (value) => {
       if (!value) return;
@@ -15,7 +14,7 @@ export const column = (user, work, onDelete) => [
   },
   {
     key: "job",
-    title: "Công việc",
+    title: "Job",
     dataIndex: "maCongViec",
     render: (value) => {
       if (!value) return;
@@ -37,18 +36,18 @@ export const column = (user, work, onDelete) => [
   },
   {
     key: "time",
-    title: "Ngày thuê",
+    title: "Date of hire",
     dataIndex: "ngayThue",
     align: "center",
   },
 
   {
     title: "",
-    width: 100,
+    width: 60,
     align: "center",
     render: (item) => {
       return (
-        <Tooltip title="Xoá">
+        <Tooltip title="Delete">
           <Button
             size="small"
             style={{
