@@ -52,9 +52,9 @@ const UserManagement = () => {
   const onDelete = (id) => {
     Swal.fire({
       icon: "warning",
-      text: "Bạn muốn xoá dữ liệu này chứ?",
-      confirmButtonText: "Đồng ý",
-      cancelButtonText: "Không",
+      text: "Do you want to delete this data?",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
       showCancelButton: true,
       confirmButtonColor: "#1677ff",
     }).then(async (result) => {
@@ -62,7 +62,7 @@ const UserManagement = () => {
         try {
           await apiDeleteUser(id);
           getListUser();
-          ShowSuccess("Xoá thành công");
+          ShowSuccess("Delete successfully");
         } catch (error) {
           ShowError(error?.response?.data?.content);
         }

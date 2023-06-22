@@ -71,7 +71,7 @@ export const column = (onEdit, onDelete) => [
               <EditOutlined style={{ fontSize: "14px" }} />
             </Button>
           </Tooltip>
-          <Tooltip title="Xoá">
+          <Tooltip title="Delete">
             <Button
               size="small"
               style={{
